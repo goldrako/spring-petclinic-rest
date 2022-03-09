@@ -13,7 +13,8 @@ pipeline {
     IMAGE_REPO = 'spring-petclinic'
     IMAGE_NAME = 'spring-petclinic-rest'
     IMAGE_TAG = sh(returnStdout: true, script: '(git rev-parse --short HEAD && echo "_$BUILD_NUMBER") | tr -d "\n"').trim()
-    BASE_URL = '192.168.56.201:9966/petclinic'
+    // BASE_URL = '192.168.56.201:9966/petclinic'
+    BASE_URL = '10.100.0.201:9966/petclinic'
     //APP_PORT = 8080
   }
 
