@@ -77,7 +77,7 @@ pipeline {
         }
       }
     }
-    stage('Approve') {
+    stage('Approval') {
         steps {
             // emailext mimeType: 'text/html',
             //   subject: "[Jenkins] Approval Request from ${currentBuild.fullDisplayName}",
