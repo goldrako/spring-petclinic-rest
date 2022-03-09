@@ -77,6 +77,26 @@ pipeline {
         }
       }
     }
+    stage('Approve') {
+        steps {
+            // emailext mimeType: 'text/html',
+            //   subject: "[Jenkins] Approval Request from ${currentBuild.fullDisplayName}",
+            //   to: "cure4itches@gmail.com",
+            //   body: '''<a href="${BUILD_URL}input">Please check this approval request.</a>'''
+            
+            script {
+                def userInput = input id: 'userInput',
+                                    message: 'Deploy to Kubernetes?', 
+                                    submitterParameter: 'submitter',
+                                    submitter: 'admin',
+                                    parameters: [
+                                        [$class: 'TextParameterDefinition', defaultValue: 'O.K', description: '승인내용', name: 'Review']
+                                    ]
+
+                echo ("Review: "+userInput['Review'])
+            }
+        }
+    }    
     stage( 'Deploy to Cluster' ) {
       steps {
         script {
